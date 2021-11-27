@@ -17,3 +17,4 @@ export class BackgroundModule extends Module {
     element.style.backgroundColor = color
   }
 }
+
