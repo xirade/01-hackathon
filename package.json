@@ -18,9 +18,12 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.6.0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "hackathon",
+    "menu",
+    "js"
+  ],
+  "license": "MIT",
   "dependencies": {
     "core-js": "^3.15.2",
     "regenerator-runtime": "^0.13.9"
