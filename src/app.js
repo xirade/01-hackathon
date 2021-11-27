@@ -1,12 +1,15 @@
 import ContextMenu from "./menu"
 import { BackgroundModule } from './modules/background.module';
+import { SoundModule } from "./modules/sound.module";
 
 import './styles.css'
 
 const mainScope = document.querySelector("body")
 const contextMenu = new ContextMenu("#menu")
 const backColor = new BackgroundModule('background', 'Цвет фона')
-contextMenu.add()
+const sound = new SoundModule('sound', 'Звук')
+contextMenu.add(backColor)
+contextMenu.add(sound)
 
 
 mainScope.addEventListener("contextmenu", (event) => {
@@ -15,7 +18,10 @@ mainScope.addEventListener("contextmenu", (event) => {
 // ЗДЕСЬ ВЫЗЫВАЕМ ОСНОВНЫЕ МЕТОДЫ
   contextMenu.open()
   menu.addEventListener('click', event =>{
-    const Id = event.target.dataset.type
-    if(Id === 'background') backColor.setColor(mainScope)
+    const id = event.target.dataset.type
+    if(id === 'background') backColor.setColor(mainScope)
+    if(id === 'sound') sound.play()
+    
+    contextMenu.close()
   })
 })

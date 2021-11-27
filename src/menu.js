@@ -15,8 +15,7 @@ class ContextMenu extends Menu {
   }
 
   add(instanceofModule) {
-    const backColor = new BackgroundModule('background', 'Цвет фона')
-    this.el.insertAdjacentHTML('afterbegin', backColor.toHTML()) 
+    this.el.insertAdjacentHTML('afterbegin', instanceofModule.toHTML()) 
   }
 }
 
