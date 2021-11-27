@@ -40,3 +40,10 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
+
+.open-menu{
+    display: block;
+}
+.close-menu{
+    display: none; 
+}

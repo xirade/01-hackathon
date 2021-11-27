@@ -1,34 +1,19 @@
-import {Module} from '../core/module' 
+import {Module} from '../core/module'
+import * as Utils from '../core/utils/utils'
 export class BackgroundModule extends Module {
-  constructor(type, text){
+  constructor(type, text) {
     super(type, text)
     this.type = type
     this.text = text
   }
-  toHTML(){
-    const menu = document.querySelector('#menu')
-    console.log(menu);
+  toHTML() {
+    return `<li class="menu-item" data-type="${this.type}">${this.text}</li>`
   }
-   
-}
 
 
-const colors = ['#c77c7c', '#003311', '#990022', '#e31o54', '#18D7FF', '#34FF18']
-
-
-
-function setColor(element) {
-	const color = getRandomColor()
-	element.style.backgroundColor = color
-	element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`
-}
-
-function removeColor(element) {
-	element.style.backgroundColor = '#1e11d1'
-	element.style.boxShadow = '0 0 2px #1e11d1'
-}
-
-function getRandomColor() {
-	const index = Math.floor(Math.random() * colors.length)
-	return colors[index]
+  setColor(element) {
+    const colors = ['#c77c7c', '#453d','#003311', '#990022', '#e31o54', '#18D7FF', '#34FF18']
+    const color = colors[Utils.random(0, colors.length - 1)]
+    element.style.backgroundColor = color
+  }
 }

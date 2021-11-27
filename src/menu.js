@@ -1,21 +1,23 @@
 import {Menu} from './core/menu'
-export class ContextMenu extends Menu {
- 
- 
-}
-import { Menu } from "@core/menu";
+import { BackgroundModule } from './modules/background.module';
 
 class ContextMenu extends Menu {
   constructor(selector) {
     super(selector);
   }
   open() {
-    return this.el;
+    this.el.classList.add('open-menu')
+    return this.el  
   }
 
-  close() {}
+  close() {
+    this.el.classList.remove('open-menu')
+  }
 
-  add(instanceofModule) {}
+  add(instanceofModule) {
+    const backColor = new BackgroundModule('background', 'Цвет фона')
+    this.el.insertAdjacentHTML('afterbegin', backColor.toHTML()) 
+  }
 }
 
 export default ContextMenu;

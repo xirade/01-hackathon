@@ -1,18 +1,21 @@
-import { BackgroundModule } from './modules/background.module'
-import './styles.css'
-const backColor = new BackgroundModule('background', 'Фон документа')
-backColor.toHTML()
- 
- 
- 
-import ContextMenu from "./menu";
-import "./styles.css";
+import ContextMenu from "./menu"
+import { BackgroundModule } from './modules/background.module';
 
-const mainScope = document.querySelector("body");
-const contextMenu = new ContextMenu("#menu");
+import './styles.css'
+
+const mainScope = document.querySelector("body")
+const contextMenu = new ContextMenu("#menu")
+const backColor = new BackgroundModule('background', 'Цвет фона')
+contextMenu.add()
+
 
 mainScope.addEventListener("contextmenu", (event) => {
-  event.preventDefault();
+  event.preventDefault()
+  const menu = document.querySelector('#menu')
 // ЗДЕСЬ ВЫЗЫВАЕМ ОСНОВНЫЕ МЕТОДЫ
-  console.log(contextMenu.open());
-});
+  contextMenu.open()
+  menu.addEventListener('click', event =>{
+    const Id = event.target.dataset.type
+    if(Id === 'background') backColor.setColor(mainScope)
+  })
+})
