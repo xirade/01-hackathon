@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
-
+@import url("@/assets/styles/custom-message.css");
 :root {
   --background-animation: background-color 0.15s ease-in;
 }
@@ -20,9 +20,15 @@ body {
   padding: 2rem;
 }
 
+h1 {
+  pointer-events: none;
+  user-select: none;
+}
+
 img {
   max-width: 100%;
   pointer-events: none;
+  user-select: none;
 }
 
 .menu {

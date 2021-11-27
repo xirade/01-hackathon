@@ -29,7 +29,12 @@ class ContextMenu extends Menu {
     this.el.classList.remove("open");
   }
 
-  add(instanceofModule) {}
+  add(instanceofModule) {
+    if (instanceofModule.type) {
+      this.el.innerHTML += instanceofModule.toHTML();
+      instanceofModule.trigger();
+    }
+  }
 }
 
 export default ContextMenu;
