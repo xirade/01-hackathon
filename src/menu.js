@@ -5,20 +5,14 @@ class ContextMenu extends Menu {
   constructor(selector) {
     super(selector);
   }
-  // open() {
-  //   this.el.classList.add('open-menu')
-  //   return this.el  
-  // }
-
-  // close() {
-    // this.el.classList.remove('open-menu')
+  
   open(event) {
     const { clientX: cursorX, clientY: cursorY } = event;
 
     this.el.style.top = `${cursorY}px`;
     this.el.style.left = `${cursorX}px`;
 
-    this.el.children.forEach((element, index) => {
+    [...this.el.children].forEach((element, index) => {
       this.el.children[index].style.transform =
         "rotateY(0deg) rotateX(0deg) scale(1)";
     });
@@ -27,7 +21,7 @@ class ContextMenu extends Menu {
     this.el.onclick = () => this.close();
   }
   close() {
-    this.el.children.forEach((element, index) => {
+    [...this.el.children].forEach((element, index) => {
       this.el.children[index].style.transform =
         "rotateY(90deg) rotateX(45deg) scale(0)";
       this.el.classList.remove("open");
