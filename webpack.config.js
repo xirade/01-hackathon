@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = (env, argv) => {
@@ -30,7 +31,8 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: ['.js'],
       alias: {
-        '@': path.resolve(__dirname, 'src')
+        '@': path.resolve(__dirname, 'src'),
+        '@core': path.resolve(__dirname, 'src/core')
       }
     },
     devServer: {
@@ -39,10 +41,16 @@ module.exports = (env, argv) => {
       hot: true,
     },
     devtool: isDev ? 'source-map' : false,
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+      },
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html'
       }),
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: filename('css')
       }),
@@ -62,7 +70,7 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env']
             }
           }
-        }
+        },
       ],
     }
   }
