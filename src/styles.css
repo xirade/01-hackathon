@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 
 :root {
   --background-animation: background-color 0.15s ease-in;
@@ -11,66 +11,77 @@
 }
 
 body {
-  font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-size: 36px;
+  text-align: center;
+  color: #a82c38;
+  font-family: "Permanent Marker", cursive;
   height: 100vh;
   width: 100%;
   padding: 2rem;
 }
 
+img {
+  max-width: 100%;
+  pointer-events: none;
+}
+
 .menu {
   position: fixed;
   z-index: 1000;
+  text-align: l;
+  text-align: left;
+  pointer-events: none;
   width: 150px;
   border-radius: 5px;
   list-style: none;
-  transform: rotateY(90deg) rotateX(45deg);
-  transition:transform 0.2s ease-in-out;
+  cursor: url("@/assets/Katana.cur"), auto;
 }
 
 .menu.open {
+  pointer-events: visible;
   transform: rotateY(0deg) rotateX(0);
+  -webkit-transform: rotateY(0deg) rotateX(0);
 }
 
-.menu .menu-item {
+li.menu-item {
   padding: 8px 10px;
   margin-bottom: 2px;
   font-size: 1rem;
-  background-color: #444;
+  background-color: #58544b;
   box-shadow: 0 2px 10px 2px #f04b4b25;
   color: #eee;
-  cursor: pointer;
   border-radius: inherit;
-  transition: all 0.2s ease-in;
-  transform-origin: top left;
+  transition: all 0.1s ease-in;
+  -webkit-transition: all 0.1s ease-in;
   transform: rotateY(90deg) rotateX(45deg);
+  -webkit-transform: rotateY(90deg) rotateX(45deg);
 }
 
-.menu .menu-item:hover {
-  background: #343434;
-  transform: perspective(10px);
-}
-
-li.menu-items:nth-child(1) {
-  transition: transform 0.25s 0s cubic-bezier(0, 0.36, 0.95, -0.2),
+li.menu-item:nth-child(1) {
+  transition: transform 0s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     var(--background-animation);
 }
 
-li.menu-items:nth-child(2) {
-  transition: transform 0.25s 0.15s cubic-bezier(0, 0.36, 0.95, -0.2),
+li.menu-item:nth-child(2) {
+  transition: transform 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     var(--background-animation);
 }
 
-li.menu-items:nth-child(3) {
-  transition: transform 0.25s 0.3s cubic-bezier(0, 0.36, 0.95, -0.2),
+li.menu-item:nth-child(3) {
+  transition: transform 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     var(--background-animation);
 }
 
-li.menu-items:nth-child(4) {
-  transition: transform 0.25s 0.45s cubic-bezier(0, 0.36, 0.95, -0.2),
+li.menu-item:nth-child(4) {
+  transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     var(--background-animation);
 }
-li.menu-items:nth-child(4) {
-  transition: transform 0.25s 0.6s cubic-bezier(0, 0.36, 0.95, -0.2),
+li.menu-item:nth-child(5) {
+  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95),
     var(--background-animation);
+}
+
+li.menu-item:hover {
+  background-color: rgb(243, 125, 82);
+  color: #fff;
 }
