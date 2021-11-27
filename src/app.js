@@ -12,8 +12,13 @@ contextMenu.add(backColor)
 contextMenu.add(sound)
 
 
+// КОНТЕКСТНОЕ МЕНЮ
 mainScope.addEventListener("contextmenu", (event) => {
   event.preventDefault()
+  const { target } = event;
+  if (target) {
+    contextMenu.open(event);
+  }
   const menu = document.querySelector('#menu')
 // ЗДЕСЬ ВЫЗЫВАЕМ ОСНОВНЫЕ МЕТОДЫ
   contextMenu.open()
@@ -25,3 +30,7 @@ mainScope.addEventListener("contextmenu", (event) => {
     contextMenu.close()
   })
 })
+  
+
+  //ОСНОВНЫЕ МЕТОДЫ
+ 
