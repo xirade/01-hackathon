@@ -13,19 +13,22 @@ class ContextMenu extends Menu {
     this.el.style.left = `${cursorX}px`;
 
     [...this.el.children].forEach((element, index) => {
-      this.el.children[index].style.transform =
-        "rotateY(0deg) rotateX(0deg) scale(1)";
+      this.el.children[index].style.transform = "rotateY(0deg) rotateX(0deg)";
+      this.el.children[index].style.webkitTransform =
+        " rotateY(0deg) rotateX(0deg)";
     });
-    this.el.classList.add("open");
-    // ЗАКРЫТЬ ОКНО ПРИ КЛИКЕ
+
     this.el.onclick = () => this.close();
+
+    this.el.classList.add("open");
   }
   close() {
     [...this.el.children].forEach((element, index) => {
-      this.el.children[index].style.transform =
-        "rotateY(90deg) rotateX(45deg) scale(0)";
-      this.el.classList.remove("open");
+      this.el.children[index].style.transform = "rotateY(90deg) rotateX(45deg)";
+      this.el.children[index].style.webkitTransform =
+        "rotateY(90deg) rotateX(45deg)";
     });
+    this.el.classList.remove("open");
   }
 
   add(instanceofModule) {
