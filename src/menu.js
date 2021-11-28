@@ -1,11 +1,10 @@
-import {Menu} from './core/menu'
-import { BackgroundModule } from './modules/background.module';
+import { Menu } from "./core/menu";
 
 class ContextMenu extends Menu {
   constructor(selector) {
     super(selector);
   }
-  
+
   open(event) {
     const { clientX: cursorX, clientY: cursorY } = event;
 
@@ -31,8 +30,10 @@ class ContextMenu extends Menu {
     this.el.classList.remove("open");
   }
 
-  add(instanceofModule) {
-    this.el.insertAdjacentHTML('afterbegin', instanceofModule.toHTML()) 
+  add(instancesofModule) {
+    instancesofModule.forEach((module) => {
+      this.el.insertAdjacentHTML("afterbegin", module.toHTML());
+    });
   }
 }
 

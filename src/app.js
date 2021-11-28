@@ -1,36 +1,40 @@
-import ContextMenu from "./menu"
-import { BackgroundModule } from './modules/background.module';
-import { SoundModule } from "./modules/sound.module";
+import ContextMenu from "./menu";
+import BackgroundModule from "@/modules/background.module";
+import SoundModule from "@/modules/sound.module";
 
-import './styles.css'
+import img from "./assets/Hackers.png";
+import "./styles.css";
 
-const mainScope = document.querySelector("body")
-const contextMenu = new ContextMenu("#menu")
-const backColor = new BackgroundModule('background', 'Поменять цвет')
-const sound = new SoundModule('sound', 'Звук')
-contextMenu.add(backColor)
-contextMenu.add(sound)
+const mainScope = document.querySelector("body");
+const contextMenu = new ContextMenu("#menu");
+const backColor = new BackgroundModule("background", "Change Color");
+const sound = new SoundModule("sound", "Melody");
 
+// ДОБАВЛЕНИЕ ВСЕХ МОДУЛЕЙ
+contextMenu.add([sound, backColor]);
 
 // КОНТЕКСТНОЕ МЕНЮ
 mainScope.addEventListener("contextmenu", (event) => {
-  event.preventDefault()
+  event.preventDefault();
   const { target } = event;
   if (target) {
     contextMenu.open(event);
-  }
-  const menu = document.querySelector('#menu')
-// ЗДЕСЬ ВЫЗЫВАЕМ ОСНОВНЫЕ МЕТОДЫ
- 
-  menu.addEventListener('click', event =>{
-    const id = event.target.dataset.type
-    if(id === 'background') backColor.setColor(mainScope)
-    if(id === 'sound') sound.play()
-    
-    
-  })
-})
-  
+    contextMenu.el.addEventListener("click", (event) => {
+      const id = event.target.dataset.type;
+      // ЗДЕСЬ ВЫЗЫВАЕМ ОСНОВНЫЕ МЕТОДЫ
 
-  //ОСНОВНЫЕ МЕТОДЫ
- 
+      switch (id) {
+        case "background":
+          backColor.trigger(mainScope);
+          break;
+        case "sound":
+          sound.trigger();
+          break;
+
+        default:
+          break;
+      }
+    });
+    //ОСНОВНЫЕ МЕТОДЫ
+  }
+});
