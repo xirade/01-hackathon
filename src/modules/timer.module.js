@@ -5,7 +5,9 @@ export class TimerModule extends Module {
     trigger() {
         const timer = document.querySelector(".timer");
         timer.style.display = "flex";
+
         // Настройка таймера
+
         const timeButtons = document.querySelectorAll(
             ".time-selection__button"
         );
@@ -26,9 +28,18 @@ export class TimerModule extends Module {
             });
         });
 
+        timerInput.addEventListener("keydown", (e) => {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+                event.returnValue = false;
+                timerInput.placeholder = "Введите число";
+            }
+        });
+
         submitTimerForm.addEventListener("submit", (e) => {
             // Работа таймера
+
             e.preventDefault();
+
             timerInputValue = Number(timerInput.value);
             submitTimerForm.style.display = "none";
             timerBody.style.display = "block";
@@ -81,15 +92,11 @@ export class TimerModule extends Module {
             function removeTimer(time) {
                 setTimeout(() => {
                     timer.style.display = "none";
+                    submitTimerForm.style.display = "flex";
+                    timerSuccessMessage.style.display = "none";
                 }, time * 1000);
             }
             setClock(".timer");
         });
-        function cislo() {
-            if (event.keyCode < 48 || event.keyCode > 57) {
-                event.returnValue = false;
-                timerInput.placeholder = "Введите число";
-            }
-        }
     }
 }

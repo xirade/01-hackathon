@@ -51,3 +51,8 @@ contextMenu.el.addEventListener("click", (event) => {
     }
 });
 //ОСНОВНЫЕ МЕТОДЫ
+const time = document.querySelector(".timer");
+
+time.addEventListener("keydown", (e) => {
+    console.log(e.keyCode);
+});
