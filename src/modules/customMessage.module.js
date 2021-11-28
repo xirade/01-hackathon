@@ -7,9 +7,9 @@ class CustomMessage extends Module {
 
   constructor(type, text) {
     super(type, text);
-    this.#minute = 1;
+    this.#minute = 0;
     this.#second = 10;
-    this.#typeTime = "минут";
+    this.#typeTime = "секунд";
   }
   tick(minute, second, interval) {
     if (minute > 0) {
@@ -44,6 +44,7 @@ class CustomMessage extends Module {
   trigger() {
     const divPopup = document.createElement("div");
     divPopup.id = "myDIV";
+    divPopup.draggable = true;
     divPopup.className = "mystyle";
     const popup = document.querySelector("#myDIV");
     divPopup.style.cssText =
@@ -95,4 +96,3 @@ class CustomMessage extends Module {
 }
 
 export default CustomMessage;
-
