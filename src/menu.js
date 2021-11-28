@@ -31,7 +31,6 @@ class ContextMenu extends Menu {
   }
 
   add(instancesofModule) {
-    console.log(this.el);
     instancesofModule.forEach((module) => {
       this.el.insertAdjacentHTML("afterbegin", module.toHTML());
     });
