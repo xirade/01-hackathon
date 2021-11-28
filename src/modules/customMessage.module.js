@@ -1,39 +1,71 @@
 import { Module } from "@core/module";
 
 class CustomMessage extends Module {
+  #minute;
+  #second;
+  #typeTime;
+
   constructor(type, text) {
     super(type, text);
+    this.#minute = 1;
+    this.#second = 10;
+    this.#typeTime = "минут";
+  }
+  tick(minute, second, interval) {
+    if (minute > 0) {
+      this.#typeTime = "минут";
+    }
+    if (minute <= 0) {
+      this.#typeTime = "секунд";
+    }
+    document.getElementById("timer").textContent = `
+    ${minute < 10 ? `0${minute}` : minute} : ${
+      second < 10 ? `0${second}` : second
+    } ${this.#typeTime}!
+    `;
+
+    if (second === 0 && minute === 0) {
+      clearTimeout(interval);
+      document.querySelector("#myDIV").remove();
+    }
   }
   timer() {
-    let minute = "0";
-    let sec = "28";
+    let minute = this.#minute;
+    let second = this.#second;
     let interval = setInterval(() => {
-      document.getElementById("timer").innerHTML = `${minute} : ${sec}`;
-      sec--;
-      if (sec < 10) {
-      } else if (minute === Number('0')){
-        document.getElementById("min").innerHTML = `секунд`;
-      }
-      if (sec < "00") {
+      if (second === 0) {
         minute--;
-        sec = "60";
-        if (minute < "0") {
-          clearTimeout(interval);
-          document.querySelector("#myDIV").remove();
-        }
+        second = 60;
       }
+      second--;
+      this.tick(minute, second, interval);
     }, 1000);
   }
   trigger() {
     const divPopup = document.createElement("div");
     divPopup.id = "myDIV";
-    divPopup.className = 'mystyle';
+    divPopup.className = "mystyle";
     const popup = document.querySelector("#myDIV");
-    divPopup.style.cssText = 'position:absolute; top:0px; left: 0px; margin: 0 auto; z-index:100;';
-    divPopup.innerHTML = `<div class="ramka"><p class = 'p0'>Окно закроется автоматически через <span id="timer">1:59</span> <span id="min">минуты!</span><p class = 'p1'> окно можно перетаскивать</p></p></div>`;
-    
-    if (popup === null) {document.body.append(divPopup);
-    this.timer();}
+    divPopup.style.cssText =
+      "position:absolute; top:0px; left: 0px; margin: 0 auto; z-index:100;";
+    divPopup.innerHTML = `
+    <div class="ramka"> <p class = 'p0'>
+      Окно закроется автоматически через 
+      <br /> 
+        <span id="timer"> 
+    ${this.#minute < 10 ? `0${this.#minute}` : this.#minute} : ${
+      this.#second < 10 ? `0${this.#second}` : this.#second
+    } ${this.#typeTime}!
+    </span> 
+        <br />
+        <p class = 'p1'>Блок можно передвигать</p>
+      </p>
+    </p></div>`;
+
+    if (popup === null) {
+      document.body.append(divPopup);
+      this.timer();
+    }
     const popupDiv = document.querySelector("#myDIV");
 
     popupDiv.onmousedown = function (event) {
@@ -63,3 +95,4 @@ class CustomMessage extends Module {
 }
 
 export default CustomMessage;
+
