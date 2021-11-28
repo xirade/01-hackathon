@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url("@/assets/styles/customMessage.css");
+@import url("@/assets/styles/clickModule.css");
+
 
 :root {
   --background-animation: background-color 0.15s ease-in;
