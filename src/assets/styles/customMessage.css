@@ -43,8 +43,6 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  font-family: "Roboto Condensed", sans-serif;
   box-shadow: inset 6px 6px 8px 0 rgba(0, 0, 0, 0.4);
 }
 
