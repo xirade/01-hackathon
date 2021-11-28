@@ -30,7 +30,7 @@ class CustomMessage extends Module {
     divPopup.className = 'mystyle';
     const popup = document.querySelector("#myDIV");
     divPopup.style.cssText = 'position:absolute; top:0px; left: 0px; margin: 0 auto; z-index:100;';
-    divPopup.innerHTML = `<p class = 'p0'>Окно закроется автоматически через <br /> <p class = 'p'><span id="timer">1:59</span> <span id="min">минуты!</span><br /><p class = 'p1'>Блок можно передвигать</p></p></p>`;
+    divPopup.innerHTML = `<div class="ramka"><p class = 'p0'>Окно закроется автоматически через <span id="timer">1:59</span> <span id="min">минуты!</span><p class = 'p1'> окно можно перетаскивать</p></p></div>`;
     
     if (popup === null) {document.body.append(divPopup);
     this.timer();}
