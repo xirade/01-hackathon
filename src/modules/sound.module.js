@@ -17,11 +17,12 @@ class SoundModule extends Module {
       url: samples[randomSample],
       autostart: true,
     });
-    const filter = new Tone.Filter(400, "lowpass").toDestination();
-    const feedbackDelay = new Tone.FeedbackDelay(0.3, 0.5).toDestination();
+    const autoFilter = new Tone.AutoFilter({
+      frequency: "8m",
+      octaves: 1.4,
+    });
 
-    // connect the player to the feedback delay and filter in parallel
-    player.chain(feedbackDelay);
+    player.chain(autoFilter, Tone.Master);
   }
 }
 
