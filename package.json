@@ -14,10 +14,9 @@
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.1.0",
-    "webpack": "^5.46.0",
-    "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2",
-    "clean-webpack-plugin": "^4.0.0"
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
   },
   "keywords": [
     "hackathon",
@@ -27,6 +26,7 @@
   "license": "MIT",
   "dependencies": {
     "core-js": "^3.15.2",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "tone": "^14.7.77"
   }
 }

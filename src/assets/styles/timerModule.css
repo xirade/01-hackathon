@@ -1,0 +1,144 @@
+:root {
+  --mb: 5px;
+  --mt: 20px;
+}
+
+.timer {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  position: absolute;
+  top: 10%;
+  right: 0px;
+  background-color: #f2f2f2;
+  box-shadow: 10px 10px 10px rgba(12, 12, 14, 0.35);
+  border-radius: 10px;
+  width: 350px;
+  height: 190px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  transition: ease-in-out 1.5s;
+  transform: translate(-30px, -30px);
+  animation: fade;
+}
+
+.timer__body-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+.time__selection-input {
+  align-self: center;
+  margin-top: 30px;
+  width: 70%;
+  height: 30px;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  box-shadow: 5px 5px 5px rgba(12, 12, 14, 0.1);
+}
+.time-selection__row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.time-selection__button {
+  border-radius: 100%;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 5px 5px 5px rgba(12, 12, 14, 0.15);
+  background-color: #fff;
+}
+.time-selection-submit {
+  width: 100%;
+  background: #a82c38;
+  border-radius: 0px 0px 5px 5px;
+  height: 40px;
+  font-size: 14px;
+  line-height: 17px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.timer__body {
+  display: none;
+  width: 100%;
+  text-align: center;
+}
+.timer__body-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.timer__body-time {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.time__item {
+  width: 80px;
+  height: 90px;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+#seconds {
+  margin-top: var(--mt);
+  margin-bottom: var(--mb);
+  font-size: 46px;
+  font-weight: 700;
+}
+#minutes {
+  margin-top: var(--mt);
+  margin-bottom: var(--mb);
+  font-size: 46px;
+  font-weight: 700;
+}
+
+.timer__success {
+  flex-direction: column;
+  align-items: center;
+  display: none;
+}
+.timer__success-header {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+.timer__success img {
+  border-radius: 50%;
+  background-color: #ff9846;
+  width: 100px;
+  border: 10px solid #ff9846;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 1;
+  }
+}

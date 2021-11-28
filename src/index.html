@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Context Menu</title>
-  </head>
-  <body>
-    <ul class="menu" id="menu"></ul>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Context Menu</title>
+    </head>
+    <body>
+        <img
+            draggable="false"
+            class="main-img"
+            src="./assets/Hackers.png"
+            alt="hackers"
+        />
+        <h1 class="main-h1">Hatckers Okimi</h1>
+        <ul class="menu" id="menu"></ul>
+        <div class="timer">
+            <form class="timer__body-selection">
+                <input
+                    type="text"
+                    class="time__selection-input"
+                    onKeyPress="cislo()"
+                />
+                <div class="time-selection__row">
+                    <button
+                        class="time-selection__button"
+                        value="10"
+                        type="button"
+                    >
+                        10
+                    </button>
+                    <button
+                        class="time-selection__button"
+                        value="20"
+                        type="button"
+                    >
+                        20
+                    </button>
+                    <button
+                        class="time-selection__button"
+                        value="30"
+                        type="button"
+                    >
+                        30
+                    </button>
+                </div>
+                <button class="time-selection-submit" type="submit">
+                    Set a timer!
+                </button>
+            </form>
+
+            <div class="timer__body">
+                <div class="timer__body-header">There is</div>
+                <div class="timer__body-time">
+                    <div class="time__item">
+                        <span id="minutes">05</span>
+                        Minutes
+                    </div>
+                    <div class="time__item">
+                        <span id="seconds">01</span>
+                        Seconds
+                    </div>
+                </div>
+            </div>
+            <div class="timer__success">
+                <div class="timer__success-header">Time is up!</div>
+                <img class="timer__success-img" src="" alt="" />
+            </div>
+        </div>
+
+        <footer class="forest">
+            <div class="surface"></div>
+            <div class="ninja">
+                <img src="./assets/ninja.png" alt="" class = "ninja-image"/>
+                <div class="ninja-message"></div>
+            </div>
+        </footer>
+    </body>
 </html>
