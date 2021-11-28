@@ -1,5 +1,5 @@
 import { Module } from "@core/module";
-import img from "../assets/img/red.png"
+
 
 export class ClicksModule extends Module {
   constructor(type, text) {
@@ -191,6 +191,7 @@ export class ClicksModule extends Module {
 
     function removeWrapper () {
       document.querySelector('.screens_wrapper').remove()
+      location.reload()
     }
     
 
