@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 @import url("@/assets/styles/customMessage.css");
 @import url("@/assets/styles/clickModule.css");
-
-
+@import url("@/assets/styles/timerModule.css");
 :root {
   --background-animation: background-color 0.15s ease-in;
 }
@@ -20,7 +19,6 @@ body {
   font-family: "Permanent Marker", cursive;
   height: 100vh;
   width: 100%;
-  padding: 2rem;
 }
 
 h1,
@@ -39,7 +37,6 @@ img {
 .menu {
   position: fixed;
   z-index: 1000;
-  text-align: l;
   text-align: left;
   pointer-events: none;
   width: 150px;
@@ -69,22 +66,27 @@ li.menu-item {
 }
 
 li.menu-item:nth-child(1) {
-  transition: transform 0s cubic-bezier(0.445, 0.05, 0.55, 0.95), var(--background-animation);
+  transition: transform 0s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    var(--background-animation);
 }
 
 li.menu-item:nth-child(2) {
-  transition: transform 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95), var(--background-animation);
+  transition: transform 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    var(--background-animation);
 }
 
 li.menu-item:nth-child(3) {
-  transition: transform 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95), var(--background-animation);
+  transition: transform 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    var(--background-animation);
 }
 
 li.menu-item:nth-child(4) {
-  transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95), var(--background-animation);
+  transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    var(--background-animation);
 }
 li.menu-item:nth-child(5) {
-  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95), var(--background-animation);
+  transition: transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    var(--background-animation);
 }
 
 li.menu-item:hover {
@@ -92,142 +94,60 @@ li.menu-item:hover {
   color: #fff;
 }
 
-.timer {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  position: absolute;
-  bottom: 0;
-  right: 0px;
-  background-color: #f2f2f2;
-  box-shadow: 10px 10px 10px rgba(12, 12, 14, 0.35);
-  border-radius: 10px;
-  width: 350px;
-  height: 190px;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  transition: ease-in-out 1.5s;
-  transform: translate(-30px, -30px);
-  animation: fade;
+.forest {
+  z-index: 0;
+  height: 580px;
+  width: 100vw;
+  position: relative;
+  overflow-x: hidden;
 }
-
-.timer__body-selection {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.surface {
   height: 100%;
-  width: 100%;
+  width: 500%;
+  background-image: url("@/assets/footer-back.jpg");
+  background-position: -2000px -20px;
+  display: block;
+  position: absolute;
+  animation: moveRight 6s linear infinite;
 }
-.time__selection-input {
-  align-self: center;
-  margin-top: 30px;
-  width: 70%;
-  height: 30px;
-  border-radius: 25px;
-  outline: none;
-  border: none;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  box-shadow: 5px 5px 5px rgba(12, 12, 14, 0.1);
+.ninja {
+  position: absolute;
+  bottom: 60px;
+  left: 10%;
+  animation: suspension 2s linear infinite;
 }
-.time-selection__row {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+img {
+  width: 250px;
 }
-.time-selection__button {
-  border-radius: 100%;
-  height: 45px;
-  width: 45px;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  font-weight: 600;
-  font-size: 16px;
-  box-shadow: 5px 5px 5px rgba(12, 12, 14, 0.15);
+@keyframes moveRight {
+  100% {
+    transform: translateX(-1295px);
+  }
+}
+@keyframes suspension {
+  100% {
+    transform: translateY(-7px);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+  0% {
+    transform: translateY(-7px);
+  }
+}
+
+.ninja-message {
+  width: 180px;
+  min-height: 100px;
+  position: absolute;
+  top: -25%;
+  left: 74%;
   background-color: #fff;
-}
-.time-selection-submit {
-  width: 100%;
-  background: #a82c38;
-  border-radius: 0px 0px 5px 5px;
-  height: 40px;
-  font-size: 14px;
-  line-height: 17px;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.timer__body {
-  display: none;
-  width: 100%;
-  text-align: center;
-}
-.timer__body-header {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-.timer__body-time {
+  border-radius: 20px;
+  opacity: 0;
+  transition: 0.5s ease;
   display: flex;
   justify-content: center;
-  gap: 30px;
-}
-.time__item {
-  width: 80px;
-  height: 90px;
-  background: #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 10px;
-}
-#seconds {
-  margin-top: 20px;
-  margin-bottom: 5px;
-  font-size: 46px;
-  font-weight: 700;
-}
-#minutes {
-  margin-top: 20px;
-  margin-bottom: 5px;
-  font-size: 46px;
-  font-weight: 700;
-}
-
-.timer__success {
-  flex-direction: column;
   align-items: center;
-  display: none;
-}
-.timer__success-header {
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 30px;
-  margin-bottom: 10px;
-}
-.timer__success img {
-  border-radius: 50%;
-  background-color: #ff9846;
-  width: 100px;
-  border: 10px solid #ff9846;
-}
-
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0.1;
-  }
-  to {
-    opacity: 1;
-  }
+  font-size: 25px;
 }

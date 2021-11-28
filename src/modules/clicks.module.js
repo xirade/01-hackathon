@@ -1,17 +1,18 @@
 import { Module } from "@core/module";
 
 export class ClicksModule extends Module {
-  constructor(type, text) {
-    super(type, text);
-  }
+    constructor(type, text) {
+        super(type, text);
+    }
 
-  hide() {
-    const logo = document.querySelector(".main-img");
-    const title = document.querySelector(".main-h1");
-    const wrapper = document.createElement("div");
+    hide() {
+        const logo = document.querySelector(".main-img");
+        const title = document.querySelector(".main-h1");
+        const wrapper = document.createElement("div");
+        const footer = document.querySelector("footer");
 
-    wrapper.className = "screens_wrapper";
-    wrapper.innerHTML = `
+        wrapper.className = "screens_wrapper";
+        wrapper.innerHTML = `
     <div class="screen">
       <h1>Catch Hatckers</h1>
       <button class="btn" id="start-btn"><a href="#"></a>Play</button>
@@ -71,118 +72,123 @@ export class ClicksModule extends Module {
     </div>
   
     <div id="message" class="message "></div>`;
-    document.querySelector("body").append(wrapper);
+        document.querySelector("body").append(wrapper);
 
-    logo.style.display = "none";
-    title.style.display = "none";
-  }
-
-  trigger() {
-    const logo = document.querySelector(".main-img");
-    const screens = document.querySelectorAll(".screen");
-    const choose_insect_btns = document.querySelectorAll(".choose-insect-btn");
-    const start_btn = document.getElementById("start-btn");
-    const game_container = document.getElementById("game-container");
-    const timeEl = document.getElementById("time");
-    const scoreEl = document.getElementById("score");
-    const message = document.getElementById("message");
-    const title = document.querySelector(".main-h1");
-
-    let seconds = 10;
-    let score = 0;
-    let selected_insect = {};
-
-    start_btn.addEventListener("click", () => screens[0].classList.add("up"));
-
-    choose_insect_btns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const img = btn.querySelector("img");
-        const src = img.getAttribute("src");
-        const alt = img.getAttribute("alt");
-        selected_insect = { src, alt };
-        screens[1].classList.add("up");
-        setTimeout(createInsect, 1000);
-        startGame();
-      });
-    });
-
-    function startGame() {
-      setInterval(increaseTime, 1000);
+        logo.style.display = "none";
+        title.style.display = "none";
+        footer.style.display = "none";
     }
 
-    function increaseTime() {
-      let m = 0;
-      let s = seconds % 60;
-      m = m < 10 ? `0${m}` : m;
-      s = s < 10 ? `0${s}` : s;
-      timeEl.innerHTML = `Time: ${m}:${s}`;
-      seconds--;
-    }
+    trigger() {
+        const logo = document.querySelector(".main-img");
+        const screens = document.querySelectorAll(".screen");
+        const choose_insect_btns =
+            document.querySelectorAll(".choose-insect-btn");
+        const start_btn = document.getElementById("start-btn");
+        const game_container = document.getElementById("game-container");
+        const timeEl = document.getElementById("time");
+        const scoreEl = document.getElementById("score");
+        const message = document.getElementById("message");
+        const title = document.querySelector(".main-h1");
 
-    function createInsect() {
-      const insect = document.createElement("div");
-      insect.classList.add("insect");
-      const { x, y } = getRandomLocation();
-      insect.style.top = `${y}px`;
-      insect.style.left = `${x}px`;
-      insect.innerHTML = `<img src="${selected_insect.src}" alt="${
-        selected_insect.alt
-      }" style="transform: rotate(${Math.random() * 360}deg)" />`;
-      insect.addEventListener("click", catchInsect);
+        let seconds = 10;
+        let score = 0;
+        let selected_insect = {};
 
-      game_container.appendChild(insect);
-    }
+        start_btn.addEventListener("click", () =>
+            screens[0].classList.add("up")
+        );
 
-    function getRandomLocation() {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const x = Math.random() * (width - 200) + 100;
-      const y = Math.random() * (height - 200) + 100;
-      return { x, y };
-    }
+        choose_insect_btns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const img = btn.querySelector("img");
+                const src = img.getAttribute("src");
+                const alt = img.getAttribute("alt");
+                selected_insect = { src, alt };
+                screens[1].classList.add("up");
+                setTimeout(createInsect, 1000);
+                startGame();
+            });
+        });
 
-    function catchInsect() {
-      increaseScore();
-      this.classList.add("caught");
-      setTimeout(() => this.remove(), 2000);
-      addInsects();
-    }
+        function startGame() {
+            setInterval(increaseTime, 1000);
+        }
 
-    function addInsects() {
-      setTimeout(createInsect, 1000);
-      setTimeout(createInsect, 1500);
-    }
+        function increaseTime() {
+            let m = 0;
+            let s = seconds % 60;
+            m = m < 10 ? `0${m}` : m;
+            s = s < 10 ? `0${s}` : s;
+            timeEl.innerHTML = `Time: ${m}:${s}`;
+            seconds--;
+        }
 
-    function increaseScore() {
-      score++;
-      if (seconds === 0) {
-        finishGame();
-      }
-      scoreEl.innerHTML = `Score: ${score}`;
-      setTimeout(removeMessage, 8000);
-      setTimeout(show, 10000);
-      setTimeout(removeWrapper, 10000);
-    }
+        function createInsect() {
+            const insect = document.createElement("div");
+            insect.classList.add("insect");
+            const { x, y } = getRandomLocation();
+            insect.style.top = `${y}px`;
+            insect.style.left = `${x}px`;
+            insect.innerHTML = `<img src="${selected_insect.src}" alt="${
+                selected_insect.alt
+            }" style="transform: rotate(${Math.random() * 360}deg)" />`;
+            insect.addEventListener("click", catchInsect);
 
-    function finishGame() {
-      game_container.classList.add("hide");
-      message.classList.add("visible");
-      message.innerHTML = `<h1>Ваш счет: <span class="primary">${score}</span></h1>`;
-    }
+            game_container.appendChild(insect);
+        }
 
-    function removeMessage() {
-      message.classList.remove("visible");
-    }
-    function show() {
-      logo.style.display = "block";
-      logo.style.margin = "0 auto";
-      title.style.display = "block";
-      title.style.margin = "0 auto";
-    }
+        function getRandomLocation() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const x = Math.random() * (width - 200) + 100;
+            const y = Math.random() * (height - 200) + 100;
+            return { x, y };
+        }
 
-    function removeWrapper() {
-      document.querySelector(".screens_wrapper").remove();
-      location.reload();
+        function catchInsect() {
+            increaseScore();
+            this.classList.add("caught");
+            setTimeout(() => this.remove(), 2000);
+            addInsects();
+        }
+
+        function addInsects() {
+            setTimeout(createInsect, 1000);
+            setTimeout(createInsect, 1500);
+        }
+
+        function increaseScore() {
+            score++;
+            if (seconds === 0) {
+                finishGame();
+            }
+            scoreEl.innerHTML = `Score: ${score}`;
+            setTimeout(removeMessage, 8000);
+            setTimeout(show, 10000);
+            setTimeout(removeWrapper, 10000);
+        }
+
+        function finishGame() {
+            game_container.classList.add("hide");
+            message.classList.add("visible");
+            message.innerHTML = `<h1>Ваш счет: <span class="primary">${score}</span></h1>`;
+        }
+
+        function removeMessage() {
+            message.classList.remove("visible");
+        }
+        function show() {
+            logo.style.display = "block";
+            logo.style.margin = "0 auto";
+            title.style.display = "block";
+            footer.style.display = "block";
+            title.style.margin = "0 auto";
+        }
+
+        function removeWrapper() {
+            document.querySelector(".screens_wrapper").remove();
+            location.reload();
+        }
     }
-  }
 }

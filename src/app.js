@@ -4,6 +4,8 @@ import BackgroundModule from "@/modules/background.module";
 import SoundModule from "@/modules/sound.module";
 import CustomMessage from "@/modules/customMessage.module";
 import { TimerModule } from "./modules/timer.module";
+import ninjaImage from "./assets/ninja.png";
+import { random } from "@core/utils/utils";
 
 import img from "./assets/Hackers.png";
 import "./styles.css";
@@ -48,8 +50,30 @@ contextMenu.el.addEventListener("click", (event) => {
     case "clicks":
       clicksModule.hide(), clicksModule.trigger();
       break;
-    default:
-      break;
   }
 });
 //ОСНОВНЫЕ МЕТОДЫ
+
+// НИНДЗЯ ФУТЕР
+const ninja = document.querySelector(".ninja");
+const ninjaMessage = document.querySelector(".ninja-message");
+const ninjaImg = document.querySelector(".ninja-image");
+ninjaImg.src = ninjaImage;
+
+const messages = [
+  "Гоняю тебе за пивом!",
+  "Я родился",
+  "Вышел за хлебом",
+  "Бегу на хакатон",
+  "Угощай и влавствуй",
+  "Тише едешь - меньше должен!",
+  "Нет такой силы, которая способна победить наши слабости.",
+  "Жизнь — одна и не надо тратить ее на одну.",
+];
+ninja.addEventListener("mouseover", () => {
+  ninjaMessage.style.opacity = 1;
+  ninjaMessage.textContent = messages[random(0, messages.length)];
+});
+ninja.addEventListener("mouseout", () => {
+  ninjaMessage.style.opacity = 0;
+});
