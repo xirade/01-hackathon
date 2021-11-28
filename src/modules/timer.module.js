@@ -5,6 +5,7 @@ export class TimerModule extends Module {
     trigger() {
         const timer = document.querySelector(".timer");
         timer.style.display = "flex";
+
         // Настройка таймера
         const timeButtons = document.querySelectorAll(
             ".time-selection__button"
@@ -15,6 +16,7 @@ export class TimerModule extends Module {
         );
         const timerBody = document.querySelector(".timer__body");
         const timerSuccessMessage = document.querySelector(".timer__success");
+        const ninjaMessage = document.querySelector(".ninja-message");
         const timerSuccessImg = document.querySelector(".timer__success-img");
         timerSuccessImg.src = timerImg;
         let timerInputValue = 0;
@@ -24,6 +26,13 @@ export class TimerModule extends Module {
                 timerInputValue += Number(e.target.value);
                 timerInput.value = timerInputValue;
             });
+        });
+
+        timerInput.addEventListener("keydown", () => {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+                event.returnValue = false;
+                timerInput.placeholder = "Введите число";
+            }
         });
 
         submitTimerForm.addEventListener("submit", (e) => {
@@ -70,26 +79,32 @@ export class TimerModule extends Module {
                     if (t.total <= 0) {
                         clearInterval(timeInterval);
                         timerBody.style.display = "none";
+                        ninjaMessage.style.opacity = 1;
+                        ninjaMessage.textContent = "Время вышло";
                         timerSuccessMessage.style.display = "flex";
+                        setTimeout(() => {
+                            ninjaMessage.textContent = "из чата :)";
+                        }, 2000);
+
+                        setTimeout(() => {
+                            ninjaMessage.style.opacity = 0;
+                        }, 4000);
                         removeTimer(10);
                         timer.addEventListener("click", () => {
-                            timer.style.display = "none";
+                            submitTimerForm.style.display = "flex";
+                            timerSuccessMessage.style.display = "none";
                         });
                     }
                 }
             }
             function removeTimer(time) {
                 setTimeout(() => {
+                    submitTimerForm.style.display = "flex";
                     timer.style.display = "none";
+                    timerSuccessMessage.style.display = "none";
                 }, time * 1000);
             }
             setClock(".timer");
         });
-        function cislo() {
-            if (event.keyCode < 48 || event.keyCode > 57) {
-                event.returnValue = false;
-                timerInput.placeholder = "Введите число";
-            }
-        }
     }
 }
