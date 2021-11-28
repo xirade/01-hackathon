@@ -8,8 +8,11 @@ export class ClicksModule extends Module {
     const logo = document.querySelector('.main-img')
     logo.style.display = "none"
   }
+
+  
   
   trigger() {
+    const logo = document.querySelector('.main-img')
     const screens = document.querySelectorAll('.screen')
     const choose_insect_btns = document.querySelectorAll('.choose-insect-btn')
     const start_btn = document.getElementById('start-btn')
@@ -92,7 +95,8 @@ export class ClicksModule extends Module {
             finishGame()  
         }
         scoreEl.innerHTML = `Score: ${score}`
-        
+        setTimeout(removeMessage, 8000)
+        setTimeout(show, 11000)
     }
     
 
@@ -102,6 +106,22 @@ export class ClicksModule extends Module {
         message.classList.add('visible') 
         message.innerHTML = `<h1>Ваш счет: <span class="primary">${score}</span></h1>`   
     }
+    
+    function removeMessage () {
+      message.classList.remove('visible')
+      
+    }
+    function show () {
+      logo.style.display = "block"
+      logo.style.margin = "0 auto"
+      screens[1].classList.remove('up')
+      screens[0].classList.remove('up')
+            
+    }
+    
 
   }
+
+  
+  
 }
