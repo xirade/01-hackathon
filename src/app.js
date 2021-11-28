@@ -1,17 +1,20 @@
 import ContextMenu from "./menu";
 import BackgroundModule from "@/modules/background.module";
 import SoundModule from "@/modules/sound.module";
+import CustomMessage from "@/modules/customMessage.module";
 
 import img from "./assets/Hackers.png";
 import "./styles.css";
 
 const mainScope = document.querySelector("body");
+// MODULES
 const contextMenu = new ContextMenu("#menu");
 const backColor = new BackgroundModule("background", "Change Color");
 const sound = new SoundModule("sound", "Melody");
+const customMessage = new CustomMessage("custom", "custom message");
 
 // ДОБАВЛЕНИЕ ВСЕХ МОДУЛЕЙ
-contextMenu.add([sound, backColor]);
+contextMenu.add([sound, backColor, customMessage]);
 
 // КОНТЕКСТНОЕ МЕНЮ
 mainScope.addEventListener("contextmenu", (event) => {
@@ -29,6 +32,9 @@ mainScope.addEventListener("contextmenu", (event) => {
           break;
         case "sound":
           sound.trigger();
+          break;
+        case "custom":
+          customMessage.trigger();
           break;
 
         default:
