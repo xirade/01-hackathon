@@ -1,8 +1,4 @@
 .mystyle {
-    position:absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 1000px;
     width: 300px;
     height: 100px;
     margin: 18px 20px; 
@@ -35,5 +31,3 @@
   .p0{
       text-align: center;
   }
-
- 
