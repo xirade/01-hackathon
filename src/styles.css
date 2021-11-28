@@ -21,6 +21,13 @@ body {
   padding: 2rem;
 }
 
+h1,
+img {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
 img {
   max-width: 100%;
   pointer-events: none;
