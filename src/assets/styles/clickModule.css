@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #516dff;
+  
   color: #fff;
   font-family: 'Press Start 2P', sans-serif;
   height: 100vh;
@@ -27,7 +27,7 @@ h1 {
     width: 150px;
     height: 60px;
     appearance: none;
-    background-color: #FFFFFF;
+    background-color: #7dbdf8;
     border-radius: 40em;
     border-style: none;
     box-shadow: #ADCFFF 0 -12px 6px inset;
@@ -109,8 +109,8 @@ h1 {
 
 .choose-insect-btn {
   background-color: transparent;
-  border: 2px solid #fff;
-  color: #fff;
+  border: 2px solid rgb(122, 119, 119);
+  color: rgb(10, 10, 10);
   cursor: pointer;
   font-family: inherit;
   width: 150px;
@@ -119,8 +119,8 @@ h1 {
 }
 
 .choose-insect-btn:hover {
-  background-color: #fff;
-  color: #516dff;
+  background-color: rgb(158, 225, 252);
+  color: #f00b57;
 }
 
 .choose-insect-btn:active {

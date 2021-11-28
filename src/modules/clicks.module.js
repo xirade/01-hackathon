@@ -1,12 +1,81 @@
 import { Module } from "@core/module";
+import img from "../assets/img/red.png"
 
 export class ClicksModule extends Module {
   constructor(type, text) {
     super(type, text);
   }
+  
   hide() {
     const logo = document.querySelector('.main-img')
+    const title = document.querySelector(".main-h1")
+    const wrapper = document.createElement('div')
+
+    wrapper.className = 'screens_wrapper'
+    wrapper.innerHTML = `
+    <div class="screen">
+      <h1>Catch Hatckers</h1>
+      <button class="btn" id="start-btn"><a href="#"></a>Play</button>
+    </div>
+  
+    <div class="screen">
+      <h1>Choose a player of Hatckers Okimi </h1>
+      <ul class="insects-list">
+        <li>
+          <button class="choose-insect-btn">
+            <p>Daniel</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/1150/1150031.png" alt="Daniel">
+          </button>
+        </li>
+        <li>
+          <button class="choose-insect-btn">
+            <p>Ed</p>
+            <img
+               src="https://cdn-icons-png.flaticon.com/512/1150/1150028.png"
+               alt="Ed"
+               />
+          </button>
+        </li>
+        <li>
+          <button class="choose-insect-btn">
+            <p>Beshil</p>
+            <img
+               src="https://cdn-icons-png.flaticon.com/512/3819/3819167.png"
+               alt="Beshil"
+               />
+          </button>
+        </li>
+        <li>
+          <button class="choose-insect-btn">
+            <p>Natali</p>
+            <img
+               src="https://cdn-icons-png.flaticon.com/512/1071/1071180.png"
+               alt="Natali"
+               />
+          </button>
+        </li>
+        <li>
+          <button class="choose-insect-btn">
+            <p>Anton</p>
+            <img
+               src="https://cdn-icons-png.flaticon.com/512/4500/4500180.png"
+               alt="Anton"
+               />
+          </button>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="screen game-container" id="game-container">
+      <h3 id="time" class="time">Time: 00:00</h3>
+      <h3 id="score" class="score">Score: 0</h3>
+    </div>
+  
+    <div id="message" class="message "></div>`
+    document.querySelector('body').append(wrapper)
+
     logo.style.display = "none"
+    title.style.display = "none"
   }
 
   
@@ -20,6 +89,7 @@ export class ClicksModule extends Module {
     const timeEl = document.getElementById('time')
     const scoreEl = document.getElementById('score')
     const message = document.getElementById('message')
+    const title = document.querySelector(".main-h1")
    
 
     let seconds = 10
@@ -96,13 +166,13 @@ export class ClicksModule extends Module {
         }
         scoreEl.innerHTML = `Score: ${score}`
         setTimeout(removeMessage, 8000)
-        setTimeout(show, 11000)
+        setTimeout(show, 10000)
+        setTimeout(removeWrapper, 10000)
     }
     
 
     function finishGame() {
         game_container.classList.add('hide')
-        
         message.classList.add('visible') 
         message.innerHTML = `<h1>Ваш счет: <span class="primary">${score}</span></h1>`   
     }
@@ -114,14 +184,17 @@ export class ClicksModule extends Module {
     function show () {
       logo.style.display = "block"
       logo.style.margin = "0 auto"
-      screens[1].classList.remove('up')
-      screens[0].classList.remove('up')
-            
+      title.style.display = "block"
+      title.style.margin = "0 auto"
+      
+    }
+
+    function removeWrapper () {
+      document.querySelector('.screens_wrapper').remove()
     }
     
 
   }
-
-  
+    
   
 }

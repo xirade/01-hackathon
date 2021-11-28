@@ -43,7 +43,6 @@ mainScope.addEventListener("contextmenu", (event) => {
         case "clicks":
           clicksModule.hide(),
           clicksModule.trigger();
-    
           break;
 
         default:
