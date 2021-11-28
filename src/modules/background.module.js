@@ -7,17 +7,11 @@ class BackgroundModule extends Module {
   }
 
   trigger(element) {
-    const colors = [
-      "#c77c7c",
-      "#453d",
-      "#003311",
-      "#990022",
-      "#e31o54",
-      "#18D7FF",
-      "#34FF18",
-    ];
-    const color = colors[Utils.random(0, colors.length - 1)];
-    element.style.backgroundColor = color;
+    const r = Utils.random(1, 256),
+      g = Utils.random(1, 256),
+      b = Utils.random(1, 256),
+      a = Utils.random(1, 100).toFixed(1) / 100;
+    element.style.backgroundColor = `rgba(${r},${g},${b},${a})`;
   }
 }
 

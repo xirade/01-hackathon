@@ -32,8 +32,6 @@ mainScope.addEventListener("contextmenu", (event) => {
 contextMenu.el.addEventListener("click", (event) => {
   const id = event.target.dataset.type;
   // ЗДЕСЬ ВЫЗЫВАЕМ ОСНОВНЫЕ МЕТОДЫ
-  console.log(contextMenu);
-
   switch (id) {
     case "background":
       backColor.trigger(mainScope);
