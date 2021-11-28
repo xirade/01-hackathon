@@ -2,7 +2,7 @@ import { Module } from "../core/module";
 import * as Tone from "tone";
 import { random } from "@core/utils/utils";
 
-const samples = importAll(require.context("@/assets/samples", false, /\.wav$/));
+const samples = importAll(require.context("@/assets/samples", false, /\.mp3$/));
 function importAll(sample) {
   return sample.keys().map(sample);
 }
